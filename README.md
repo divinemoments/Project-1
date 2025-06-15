@@ -2,20 +2,26 @@
 ## Skill: SQL
 ## Difficulty: ★☆☆☆☆
 
-### Followed: SQL TUTORIAL of AnShul Gupta in Youtube
+### Goal:
+Practice basic SQL SELECT statements, including column/row selection, aliasing, filtering, ordering, and derived columns by following SQL TUTORIAL of AnShul Gupta in Youtube
+### SQL Tool:
+MySQL
 
 #
 
-### Selection of database
+### Selecting Database
+-- This command sets the 'orders' database as the current default database.
+
+-- Subsequent queries will operate on tables within 'orders' unless specified otherwise.
 ```sql
 USE orders;
 ```
 
 
-### Selection of columns
+### Selecting Columns
 Columns: Created_Date and Order_ID
 
-Database: orders
+Database: orders.
 
 Table: order_details
 ```sql
@@ -23,104 +29,130 @@ SELECT Created_date, Order_ID
 FROM orders.orders_details;
 ```
 
--- Rename the column name from Created_Date to Date
-
+Rename the column name from Created_Date to Date
+```sql
 SELECT Created_Date AS Date
 FROM orders.orders_details;
+```
 
-
--- Rename the column name from Created_Date to Created Date
-
+Rename the column name from Created_Date to Created Date
+```sql
 SELECT Created_Date AS "Created Name"
 FROM orders.orders_details;
+```
 
--- Getting unique data of Order_Type
-
+Getting unique data of Order_Type
+```sql
 SELECT DISTINCT Order_Type
 FROM orders.orders_details;
+```
 
--- Getting unique data of Order_ID per Order_Type
-
+Getting unique data of Order_ID per Order_Type
+```sql
 SELECT DISTINCT Order_ID, Order_Type
 FROM orders.orders_details;
+```
 
 ### Selection of rows
--- Columns: All
--- Database: orders
--- Table: order_details
--- Rows: Order_Type is Online
+Columns: All
 
+Database: orders
+
+Table: order_details
+
+Rows: Order_Type is Online
+```sql
 SELECT *
 FROM orders.orders_details
 WHERE Order_Type = "Online";
+```
 
--- Rows: Amount is greater than 3000
-
+Rows: Amount is greater than 3000
+```sql
 SELECT *
 FROM orders.orders_details
 WHERE Amount >= 3000;
+```
 
--- signs: =, >, <, >=, <=, !=, <>
+-- Signs: =, >, <, >=, <=, !=, <>
 
--- Rows: Order_Type is NOT Online
-
+Rows: Order_Type is NOT Online
+```sql
 SELECT *
 FROM orders.orders_details
 WHERE Order_Type != "Online";
+```
 
 -- Always follow the date format in the table
 
--- Rows: Invoice_Date is past April 5, 2025
-
+Rows: Invoice_Date is past April 5, 2025
+```sql
 SELECT *
 FROM orders.orders_details
 WHERE Invoice_Date > "2025-04-05";
+```
 
--- Rows: Invoice_Date is past April 5, 2025 and Order_Type is Online
-
+Rows: Invoice_Date is past April 5, 2025 and Order_Type is Online
+```sql
 SELECT *
 FROM orders.orders_details
 WHERE Invoice_Date > "2025-04-05" AND Order_Type = "Online";
+```
 
--- Rows: Invoice_Date is past April 5, 2025 or Order_Type is Online
-
+Rows: Invoice_Date is past April 5, 2025 or Order_Type is Online
+```sql
 SELECT *
 FROM orders.orders_details
 WHERE Invoice_Date > "2025-04-05" OR Order_Type = "Online";
+```
 
--- Rows: Order_Type is not Online and Invoice_Date is past April 5, 2025
-
+Rows: Order_Type is not Online and Invoice_Date is past April 5, 2025
+```sql
 SELECT *
 FROM orders.orders_details
 WHERE NOT Order_Type = "Online" AND Invoice_Date > "2025-04-05";
+```
 
--- Rows: Order_Type is not Online and Invoice_Date is not past April 5, 2025
+Rows: Order_Type is not Online and Invoice_Date is not past April 5, 2025
+```sql
 SELECT *
 FROM orders.orders_details
 WHERE NOT (Order_Type = "Online" AND Invoice_Date > "2025-04-05");
+```
 
--- Rows: Order_Type is not Online or Invoice_Date is not past April 5, 2025
+Rows: Order_Type is not Online or Invoice_Date is not past April 5, 2025
+```sql
 SELECT *
 FROM orders.orders_details
 WHERE NOT (Order_Type = "Online" OR Invoice_Date > "2025-04-05");
+```
 
-/* Selection of rows with order
+### Selection of rows with order
 Columns: All
+
 Database: orders
+
 Table: order_details
+
 Rows: Order_Type is Online
-Order: Order_ID is descending*/
+
+Order: Order_ID is descending
+```sql
 SELECT *
 FROM orders.orders_details
 WHERE Order_Type = "Online"
 ORDER BY Order_ID desc;
+```
 
-/* Order1: Payment_Method ascending (least to most or alpha)
-Order1: Invoice_Date is descending (most to least or reverse alpha)*/
+Order1: Payment_Method ascending (least to most or alpha)
+
+Order2: Invoice_Date is descending (most to least or reverse alpha)
+```sql
 SELECT *
 FROM orders.orders_details
 WHERE Order_Type = "Online"
 ORDER BY Payment_Method asc, Invoice_Date desc;
+```
 
 /* Add new columns
 Columns: All
