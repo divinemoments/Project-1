@@ -1,4 +1,4 @@
-# Project 1: MySQL Practice
+# Project 2: MySQL Practice
 ## Skill: SQL
 ## Difficulty: ★☆☆☆☆
 
