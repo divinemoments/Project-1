@@ -155,6 +155,94 @@ FROM orders_details
 WHERE Order_Type = "Online";
 ```
 
+### IN Operator
+Select all columns from 'customer_master' where 'Address' is "Gurgaon" or "Noida".
+```sql
+SELECT *
+FROM orders.customer_master
+WHERE Address IN ("Gurgaon", "Noida");
+```
+
+Select all columns from 'customer_master' where 'Address' is neither "Gurgaon" nor "Noida".
+```sql
+SELECT *
+FROM orders.customer_master
+WHERE Address NOT IN ("Gurgaon", "Noida");
+```
+
+### BETWEEN Operator
+Select all columns from 'orders_details' where 'Amount' is between 3000 and 5000, inclusive.
+```sql
+SELECT *
+FROM orders.orders_details
+WHERE Amount BETWEEN 3000 AND 5000;
+```
+
+### LIKE Operator (Pattern Matching)
+Select all columns from 'orders_details' where 'Invoice_Date' starts with '2025'.
+```sql
+SELECT *
+FROM orders.orders_details
+WHERE Invoice_Date LIKE '2025%';
+```
+
+Select all columns from 'orders_details' where 'Payment_Method' contains 'Card'.
+```sql
+SELECT *
+FROM orders.orders_details
+WHERE Payment_Method LIKE '%Card%';
+```
+
+Select all columns from 'orders_details' where 'Payment_Method' has exactly seven characters followed by 'Card%'.
+```sql
+SELECT *
+FROM orders.orders_details
+WHERE Payment_Method LIKE '_______Card%';
+```
+
+### REGEXP Operator (Regular Expressions)
+Select all columns from 'customer_master' where 'Customer_Name' contains 'Sharma'.
+```sql
+SELECT *
+FROM orders.customer_master
+WHERE Customer_Name REGEXP 'Sharma';
+```
+
+Select all columns from 'customer_master' where 'Customer_Name' starts with 'a'.
+```sql
+SELECT *
+FROM orders.customer_master
+WHERE Customer_Name REGEXP '^a';
+```
+
+Select all columns from 'customer_master' where 'Customer_Name' ends with 'ma'.
+```sql
+SELECT *
+FROM orders.customer_master
+WHERE Customer_Name REGEXP 'ma$';
+```
+
+Select all columns from 'customer_master' where 'Customer_Name' contains either 's' or 'm'.
+```sql
+SELECT *
+FROM orders.customer_master
+WHERE Customer_Name REGEXP 's|m';
+```
+
+Select all columns from 'customer_master' where 'Customer_Name' contains a vowel followed by 'm'.
+```sql
+SELECT *
+FROM orders.customer_master
+WHERE Customer_Name REGEXP '[aeiou]m';
+```
+
+Select all columns from 'customer_master' where 'Customer_Name' contains a letter from 'a' to 'h' followed by 'm'.
+```sql
+SELECT *
+FROM orders.customer_master
+WHERE Customer_Name REGEXP '[a-h]m';
+```
+
 ### Challenge Query
 From the orders table, select all columns, add 'Order_Date' plus 3 days as "Shipment Date", filter for orders between '2025-04-02' and '2025-04-08' (inclusive of start, exclusive of end), include only orders with an even 'Order_ID' (assuming it's numeric), and order results by 'Order_Date' descending.
 ```sql
@@ -168,9 +256,16 @@ ORDER BY Order_Date DESC;
 ```
 
 ### Important Reminders
-| Category               | Detail                                     | Explanation / Usage                                                                                   |
+
+| Category | Detail | Explanation / Usage |
 | :--------------------- | :----------------------------------------- | :------------------------------------------------------------------------------------------------------ |
-| **Comparison Operators** | `=`, `>`, `<`, `>=`, `<=`, `!=`, `<>`   | Used in `WHERE` clauses to filter rows. `!=` and `<>` both mean "not equal to."                         |
-| **Date Format** | `YYYY-MM-DD`                               | Always use this format for date literals (e.g., `'2025-04-05'`) when comparing with date columns.     |
-| **Operator Precedence**| **BODMAS** | **B**rackets, **O**rders (powers/roots), **D**ivision, **M**ultiplication, **A**ddition, **S**ubtraction. SQL calculations follow this order. |
+| **Comparison Operators** | `=`, `>`, `<`, `>=`, `<=`, `!=`, `<>` | Used in `WHERE` clauses to filter rows. `!=` and `<>` both mean "not equal to." |
+| **Date Format** | `YYYY-MM-DD` | Always use this format for date literals (e.g., `'2025-04-05'`) when comparing with date columns. |
+| **Operator Precedence** | **BODMAS** | **B**rackets, **O**rders (powers/roots), **D**ivision, **M**ultiplication, **A**ddition, **S**ubtraction. SQL calculations follow this order. |
 | **Query Impact** | Filters and additions do **not** affect main database | `SELECT` queries, `WHERE` filters, and columns created with `AS` are temporary; they only modify the query's output, not the actual table data. |
+| **`BETWEEN` Operator** | Inclusive Range | The `BETWEEN` operator includes both the start and end values in its specified range. |
+| **`REGEXP` Syntax** | `^` | Matches the **beginning of the string**. |
+| **`REGEXP` Syntax** | `$` | Matches the **end of the string**. |
+| **`REGEXP` Syntax** | `\|` | Acts as a **logical OR**. |
+| **`REGEXP` Syntax** | `[]` | Matches **any single character listed within the brackets** (e.g., `[aeiou]` matches any vowel). |
+| **`REGEXP` Syntax** | `+` | Matches **one or more occurrences** of the preceding character or group (e.g., `a+` matches 'a', 'aa', 'aaa', etc.). |
