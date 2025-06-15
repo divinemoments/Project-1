@@ -4,6 +4,8 @@
 
 ### Followed: SQL TUTORIAL of AnShul Gupta in Youtube
 
+#
+
 ### Selection of database
 USE orders;
 
@@ -12,9 +14,10 @@ USE orders;
 -- Database: orders
 -- Table: order_details
 
+```sql
 SELECT Created_date, Order_ID
 FROM orders.orders_details;
-
+```
 
 -- Rename the column name from Created_Date to Date
 
