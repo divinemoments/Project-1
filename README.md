@@ -65,16 +65,12 @@ FROM orders.orders_details
 WHERE Amount >= 3000;
 ```
 
-*Signs: =, >, <, >=, <=, !=, <>*
-
 Select all columns from 'orders_details' where 'Order_Type' is not "Online".
 ```sql
 SELECT *
 FROM orders.orders_details
 WHERE Order_Type != "Online";
 ```
-
-*Always follow the date format in the table*
 
 Select all columns from 'orders_details' where 'Invoice_Date' is after "2025-04-05".
 ```sql
@@ -158,9 +154,6 @@ SELECT *,
 FROM orders_details
 WHERE Order_Type = "Online";
 ```
-
-*BODMAS (Brackets, Orders, Division, Multiplication, Addition, Subtraction)*
-*All filters and additions are not applied to the main database*
 
 ### Challenge Query
 From the orders table, select all columns, add 'Order_Date' plus 3 days as "Shipment Date", filter for orders between '2025-04-02' and '2025-04-08' (inclusive of start, exclusive of end), include only orders with an even 'Order_ID' (assuming it's numeric), and order results by 'Order_Date' descending.
