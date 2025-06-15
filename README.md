@@ -7,13 +7,17 @@
 #
 
 ### Selection of database
+```sql
 USE orders;
+```
+
 
 ### Selection of columns
--- Columns: Created_Date and Order_ID
--- Database: orders
--- Table: order_details
+Columns: Created_Date and Order_ID
 
+Database: orders
+
+Table: order_details
 ```sql
 SELECT Created_date, Order_ID
 FROM orders.orders_details;
